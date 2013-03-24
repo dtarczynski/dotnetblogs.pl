@@ -24,68 +24,12 @@
     <script type="text/javascript">
         google.load('feeds', '1');
 
-        // google.load('jquery', "1.4.0");
-        var testFeeds = [
-            'http://feeds.feedburner.com/jakubg',
-            'http://feeds.feedburner.com/maciejaniserowicz',
-            'http://maciej-progtech.blogspot.com/feeds/posts/default?alt=rss',
-            'http://feeds2.feedburner.com/Piotrosz',
-            'http://feeds.feedburner.com/devblogi',
-            'http://feeds.feedburner.com/szymonpobiega',
-            'http://geekswithblogs.net/kobush/Rss.aspx',
-            'http://feeds.feedburner.com/xion',
-            'http://marcinborecki.pl/feed/',
-            'http://teamsystem.pl/syndication.axd',
-            'http://feeds.feedburner.com/dario-g',
-            'http://jacekciereszko.pl/feeds/posts/default?alt=rss',
-            'http://michalkomorowski.blogspot.com/feeds/posts/default?alt=rss',
-            'http://feeds.feedburner.com/BartekSzafko',
-            'http://feeds2.feedburner.com/blogspot/wBGD',
-            'http://vbamania.blogspot.com/feeds/posts/default?alt=rss',
-            'http://machal85.wordpress.com/feed/',
-            'http://feeds2.feedburner.com/eastgroup',
-            'http://feeds.feedburner.com/LukaszGasior-Blog',
-            'http://feeds.feedburner.com/tomaszwisniewski',
-	        'http://feeds.feedburner.com/kozmic',
-	        'http://www.codeguru.pl/RSS/News.aspx',
-	        'http://feeds2.feedburner.com/Dotnetomaniakpl-OstatnioOpublikowaneArtykuy',
-	        'http://crmblog.pl/feed/',
-            'http://feeds.feedburner.com/MarcinWolanski',
-            'http://feeds.feedburner.com/sharepointblog_pl',
-            'http://feeds.feedburner.com/andrzejnetpl',
-            'http://feeds.feedburner.com/DariuszTarczynski',
-            'http://feeds.feedburner.com/JakubFlorczyk',
-            'http://feeds.feedburner.com/ProgramowanieIOkolice',
-    		'http://www.pzielinski.com/?feed=rss2',
-	        'http://www.lesnikowski.com/blog/index.php/feed/',
-	        'http://blog.domas.pl/feed/',
-	        'http://blog.poslinski.net/feed/',
-	        'http://jlfedra.blogspot.com/feeds/posts/default?alt=rss',
-	        'http://feeds2.feedburner.com/czoper',
-			'http://maciejgrabek.com/feed/',
-			'http://netmajor.wordpress.com/feed/',
-			'http://marcinkruszynski.blogspot.com/feeds/posts/default?alt=rss',
-			'http://revis-dev.blogspot.com/feeds/posts/default',
-			'http://feeds.feedburner.com/ZawodProgramistaNet',
-			'http://feeds.feedburner.com/michalnajman',
-			'http://poniat.wordpress.com/feed/',
-			'http://mmulawa.blogspot.com/feeds/posts/default',
-			'http://piotrsowa.eu/feed/',
-			'http://feeds.feedburner.com/office365blogpl',
-			'http://zine.net.pl/blogs/mgrzeg/rss.aspx',
-			'http://krzysztofmorcinek.wordpress.com/feed/',
-			'http://templinadam.wordpress.com/feed/',
-			'http://mndevnotes.wordpress.com/feed/',
-'http://feeds.feedburner.com/PassionateProgram',
-'http://pawel.sawicz.eu/feed/',
-'http://paskol.robi.to/?feed=rss2'
-        ];
+        var testFeeds = [];
 
         var data = {
             feeds: new Array()
         };
 
-        
         var toolTipIndex = 0;
         
         function allDone() {
@@ -174,12 +118,14 @@
                 // sortuj po dacie
             } catch (err) { }
 
-            // get all feeds at once
-            for (var feedId in testFeeds) {
-                var rssFeed = new google.feeds.Feed(testFeeds[feedId]);
-                callbackTrack.queue = callbackTrack.queue || [false];
-                rssFeed.load(callbackTrack);
-            }
+           // get all feeds at once
+           for (var feedId in testFeeds) {
+               var rssFeed = new google.feeds.Feed(testFeeds[feedId]);
+               callbackTrack.queue = callbackTrack.queue || [false];
+               rssFeed.load(callbackTrack);
+           }
+
+            allDone();
         }
 
         function doSort() {
@@ -194,7 +140,18 @@
             }
         }
 
-        google.setOnLoadCallback(initialize);
+        function start() {
+            $.ajax({
+                url : '/actualfeeds',
+                type : 'get',
+                success : function (data){
+                    testFeeds = data.value;
+                    initialize();
+                }
+            });
+        }
+
+        google.setOnLoadCallback(start);
     </script>
     
     <script type="text/javascript" src="js/dotnetblogs.min.js"></script>
