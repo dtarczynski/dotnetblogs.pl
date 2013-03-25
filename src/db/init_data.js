@@ -88,9 +88,3 @@ nano.db.destroy('dotnetblogs', function() {
 		  });
     });
 });
-
-/*function(doc) {
-  var id = doc._id;
-  var feedList = doc.feedList;
-  emit(id, feedList);
-}*/
