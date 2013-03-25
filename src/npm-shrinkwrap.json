@@ -74,6 +74,17 @@
         }
       }
     },
+    "jqtpl": {
+      "version": "2.0.14rc1",
+      "from": "jqtpl@",
+      "resolved": "https://registry.npmjs.org/jqtpl/-/jqtpl-2.0.14rc1.tgz",
+      "dependencies": {
+        "underscore": {
+          "version": "1.4.4",
+          "from": "underscore@1.4.x"
+        }
+      }
+    },
     "nano": {
       "version": "3.3.8",
       "from": "nano@",

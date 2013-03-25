@@ -1,0 +1,67 @@
+{{layout '_layout.htm'}}
+
+<textarea cols="0" rows ="0" style="display:none;" id="allFeeds"><!--
+
+{#template MAIN}
+    {#foreach $T.feeds as feed}
+    <ul class="feed-block">
+        {#include feed root=$T.feed}
+    </ul>
+    {#cycle values=['','','<div class="row-clear"></div>']}
+    {#/for}
+{#/template MAIN}
+
+{#template feed}
+    <li class="site">
+        <a class="snap_shots" target="_blank" href="{$T.link}">
+            {$T.title}
+        </a>
+    </li> 
+    {#foreach $T.entries as entry}
+        {#include entry root=$T.entry}
+    {#/for}
+ 
+{#/template feed}
+
+{#template entry}
+<li class="hentry">
+    <h3 class="entry-title">
+        <a target="_blank" rel="bookmark" href="{$T.link}" {changeToNew($T.publishedDate)}>
+            {$T.title}
+        </a>
+    </h3>
+    <div class="full-post">
+        <div class="published">
+            {getProperDate($T.publishedDate)}
+        </div>
+        <div class="entry-content">
+            <div class="entry-bound">
+                {$T.contentSnippet}
+            </div>
+        </div>
+    </div>
+</li>
+
+{#/template entry}
+
+--></textarea>
+
+<div class="cb">
+    <div class="bt">
+        <div>
+        </div>
+    </div>
+    <div class="i1">
+        <div class="i2">
+            <div class="i3" style="text-align: right">
+                <a class="rightSort" id="sortBy" onclick="javascript: changeSort(this); return false;">sortuj po tytule</a>
+            </div>
+            <div class="i3" id="headlines">
+            </div>
+        </div>
+    </div>
+    <div class="bb">
+        <div>
+        </div>
+    </div>
+</div>
