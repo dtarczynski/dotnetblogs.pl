@@ -306,6 +306,12 @@ text-indent:-999em;
 width:153px;
 }
 
+#bttn-bar .add-feed {
+	float:left;
+	height:20px;
+	padding:7px 0 3px 12px;
+}
+
 .rightSort 
 {
     text-align: right;
