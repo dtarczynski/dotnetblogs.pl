@@ -10,6 +10,8 @@
     app.set('views', __dirname + '/views');
     app.set('view engine', 'html');
     app.set('layout', true);
+    app.use(express.bodyParser());
+    app.use(app.router);
     app.engine('html', require('jqtpl').__express);
 
     /* serves main page */
@@ -17,9 +19,13 @@
         res.render('feeds');
     });
 
+    app.post("/feed/add/", function(req, res) { 
+        console.log(req.body.url);
+    });
+
     /* return l1ist of feeds */
     app.get("/actualfeeds", function(req, res) {
-      
+
         var feeds = {};
 
         db.view('list','feeds', function(err, body) {
