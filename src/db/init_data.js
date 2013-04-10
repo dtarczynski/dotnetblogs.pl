@@ -54,7 +54,7 @@
    "http://paskol.robi.to/?feed=rss2"
 ];
 
-var nano = require('nano')('http://localhost:8000');
+var nano = require('nano')('http://localhost:5984');
 
 nano.db.destroy('dotnetblogs', function() {
   // create a new database
@@ -62,26 +62,32 @@ nano.db.destroy('dotnetblogs', function() {
     	// specify the database we are going to use
     	var db = nano.use('dotnetblogs');
 
-    	// create feeds data
-    	db.insert({ list : feeds }, 'feeds', function(err, body, header) {
-      	if (err) {
-        	console.log('error inserting feeds', err.message);
-        	return;
-      	}
-      	console.log('restore finished');
-	    });
+
+      feeds.forEach( function(item) {
+          // create feeds data
+          db.insert({ name: 'feed', url : item }, function(err, body, header) {
+            if (err) {
+              console.log('error inserting feeds', err.message);
+              return;
+            }
+
+          });
+      });
+
+      console.log('restore finished');
 
 	    // create design view for feeds
-
-	     db.insert(
+  	     db.insert(
 		  { "views": 
 		    { "feeds": 
 		      { 
 		      	"map": function(doc) {
-				  	var id = doc._id;
-				  	var feedList = doc.list;
-				  	emit(id, feedList);
-				}
+              var id = doc._id;
+              if(doc.feedUrl != null ) {
+                var url = doc.feedUrl;
+                emit(id, url);
+              }
+				    }
 		      } 
 		    }
 		  }, '_design/list', function (error, response) {
