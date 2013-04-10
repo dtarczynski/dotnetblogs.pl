@@ -1,7 +1,7 @@
  var appPortNumber = 12345;
  var mainDirectoryPath = __dirname;
 
- var dbServer = require('nano')('http://localhost:8000');
+ var dbServer = require('nano')('http://localhost:5984');
  var db =  dbServer.use('dotnetblogs');
 
  var express = require("express");
@@ -19,13 +19,15 @@
 
     /* return l1ist of feeds */
     app.get("/actualfeeds", function(req, res) {
-
+      
         var feeds = {};
 
         db.view('list','feeds', function(err, body) {
           if (!err) {
               feeds = body.rows[0];
               res.send(feeds);
+          } else {
+              console.log('requesting actualfeeds : ' + err);
           }
         });
     });
