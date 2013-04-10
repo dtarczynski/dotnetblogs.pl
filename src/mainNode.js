@@ -30,7 +30,7 @@
 
         db.view('list','feeds', function(err, body) {
           if (!err) {
-              feeds = body.rows[0];
+              feeds = body.rows;
               res.send(feeds);
           } else {
               console.log('requesting actualfeeds : ' + err);

@@ -121,7 +121,11 @@ google.load('feeds', '1');
                 url : '/feed/all/',
                 type : 'get',
                 success : function (data){
-                    testFeeds = data.value;
+
+                    data.forEach( function(item) {
+                        testFeeds.push(item.value);
+                    });
+                    
                     initialize();
                 }
             });
