@@ -118,7 +118,7 @@ google.load('feeds', '1');
 
         function start() {
             $.ajax({
-                url : '/actualfeeds',
+                url : '/feed/all/',
                 type : 'get',
                 success : function (data){
                     testFeeds = data.value;

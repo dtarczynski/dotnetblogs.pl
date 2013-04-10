@@ -24,7 +24,7 @@
     });
 
     /* return l1ist of feeds */
-    app.get("/actualfeeds", function(req, res) {
+    app.get("/feed/all/", function(req, res) {
 
         var feeds = {};
 
