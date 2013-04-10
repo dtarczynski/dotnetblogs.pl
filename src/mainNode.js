@@ -20,7 +20,12 @@
     });
 
     app.post("/feed/add/", function(req, res) { 
-        console.log(req.body.url);
+          db.insert({ name: 'feed', url : req.body.url }, function(err, body, header) {
+            if (err) {
+              console.log('error inserting feeds', err.message);
+              return;
+            }
+          });
     });
 
     /* return l1ist of feeds */
