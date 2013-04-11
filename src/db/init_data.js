@@ -70,7 +70,6 @@ nano.db.destroy('dotnetblogs', function() {
               console.log('error inserting feeds', err.message);
               return;
             }
-
           });
       });
 
@@ -83,8 +82,8 @@ nano.db.destroy('dotnetblogs', function() {
 		      { 
 		      	"map": function(doc) {
               var id = doc._id;
-              if(doc.feedUrl != null ) {
-                var url = doc.feedUrl;
+              if(doc.name === 'feed' ) {
+                var url = doc.url;
                 emit(id, url);
               }
 				    }
