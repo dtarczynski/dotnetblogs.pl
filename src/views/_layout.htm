@@ -12,16 +12,27 @@
     <link rel="me" type="text/html" href="http://twitter.com/gutek">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <link href="http://feeds.feedburner.com/dotnetblogspl" title=".NET Blogs PL" rel="alternate" type="application/rss+xml" />
+
     <link type="text/css" rel="Stylesheet" href="dotnetblogs.css" />
+
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript" src="../js/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../js/jquery-jtemplates.js"></script>
     <script type="text/javascript" src="../js/jquery.cookies.js"></script>
     <script type="text/javascript" src="../js/jquery.qtip-1.0.0-rc3.min.js"></script>
     <script type="text/javascript" src="../js/dotnetblogs.min.js"></script>
     <script type="text/javascript" src="../js/feed.js"></script>
+
+    <!-- bPopup plugin http://dinbror.dk/blog/bPopup/ -->
+    <script type="text/javascript" src="../js/jquery.bpopup.min.js"></script>
+
+    <!-- We need jquery migrate to support old stuff 
+    (support for browser was depreceated in 1.9) -->
+    <script type="text/javascript" src="../js/jquery-migrate-1.1.1.js"></script>
+
 </head>
 <body>
+    <div id="element_to_pop_up" style="display:none;">Content of popup</div>
     <div id="header">
     </div>
     <div id="page_header">
