@@ -317,3 +317,14 @@ width:153px;
     text-align: right;
     font-size: 10px;    
 }
+
+/* Buttons */
+
+#add_feed_popup{
+	display:none;
+	width:200px;
+	height:100px;
+	background-color:#FFF;
+	color: #3F3E4C;
+}
+

@@ -32,7 +32,12 @@
 
 </head>
 <body>
-    <div id="element_to_pop_up" style="display:none;">Content of popup</div>
+    <div id="add_feed_popup">
+        <span>Adres Url:</span>
+        <input id="input_url"></input>
+        <button id="add_feed_button">Dodaj</button>
+        <button id="cancel_button">Anuluj</button>
+    </div>
     <div id="header">
     </div>
     <div id="page_header">
@@ -75,20 +80,29 @@
                         }
                     function add_feed_click() {
 
-                        var providedUrl = window.prompt("feed url", null);
+                        var popup = $("#add_feed_popup").bPopup();
 
-                        var data = {
-                            url : providedUrl
-                        };
+                        $("#cancel_button").click(function(){
+                            popup.close();
+                        });
 
-                        $.ajax({
-                            url : '/feed/add/',
-                            type : 'post',
-                            dataType: 'json',
-                            contentType  : 'application/json',
-                            data:  JSON.stringify(data),
-                            success : function (data){
-                            }
+                        $("#add_feed_button").click(function(){
+                            var providedUrl = $("#input_url").val();
+
+                            var data = {
+                                url : providedUrl
+                            };
+
+                            $.ajax({
+                                url : '/feed/add/',
+                                type : 'post',
+                                dataType: 'json',
+                                contentType  : 'application/json',
+                                data:  JSON.stringify(data),
+                                success : function (data){
+                                    popup.close();
+                                }
+                            });
                         });
                     }    
 
