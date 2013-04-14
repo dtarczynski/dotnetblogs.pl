@@ -65,7 +65,15 @@ nano.db.destroy('dotnetblogs', function() {
 
       feeds.forEach( function(item) {
           // create feeds data
-          db.insert({ name: 'feed', url : item }, function(err, body, header) {
+
+          var newDoc = {
+            type : 'feed',
+            url : item,
+            isActive : true,
+            isApproved : true
+          };
+
+          db.insert(newDoc, function(err, body, header) {
             if (err) {
               console.log('error inserting feeds', err.message);
               return;
@@ -82,7 +90,7 @@ nano.db.destroy('dotnetblogs', function() {
 		      { 
 		      	"map": function(doc) {
               var id = doc._id;
-              if(doc.name === 'feed' ) {
+              if(doc.type === 'feed' && doc.isActive && doc.isApproved) {
                 var url = doc.url;
                 emit(id, url);
               }
