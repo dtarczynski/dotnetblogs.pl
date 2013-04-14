@@ -23,8 +23,19 @@
           db.insert({ name: 'feed', url : req.body.url }, function(err, body, header) {
             if (err) {
               console.log('error inserting feeds', err.message);
-              return;
+              var message = {
+                isSuccess : false,
+                message : 'Oops coś poszło nie tak.'
+              };
+
+            } else {
+              var message = {
+                isSuccess : true,
+                message : 'Udało się.'
+              };
             }
+
+            res.send(message);
           });
     });
 

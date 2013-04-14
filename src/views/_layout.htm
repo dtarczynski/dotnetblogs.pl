@@ -38,6 +38,12 @@
         <button id="add_feed_button">Dodaj</button>
         <button id="cancel_button">Anuluj</button>
     </div>
+    <div id="error_popup" style="display:none;background-color:red;">
+        <span id="error_message"></span>
+    </div>
+    <div id="success_popup" style="display:none;background-color:green;">
+        <span id="success_message"></span>
+    </div>
     <div id="header">
     </div>
     <div id="page_header">
@@ -61,7 +67,7 @@
     </div> 
     <div id="wrap-bttns">
 				<div id="bttn-bar">
-                        <a title="Dodaj Feed" class="add-feed" onclick="return add_feed_click()">Dodaj Feed</a>
+                        <a title="Zgłoś Feed" class="add-feed" onclick="return add_feed_click()">Zgłoś Feed</a>
 <!-- 					<div id="tweetmeme">
 					    &nbsp;
 						<script type="text/javascript">
@@ -101,7 +107,20 @@
                                 data:  JSON.stringify(data),
                                 success : function (data){
                                     popup.close();
-                                }
+                                    if(data.isSuccess){
+                                        $("#success_message").text(data.message);
+                                        $("#success_popup").bPopup();
+
+                                    } else {
+                                        $("#error_message").text(data.message);
+                                        $("#error_popup").bPopup()
+                                    }
+
+                                },
+                                error : function (){
+                                    popup.close();
+                                    var error_popup = $("#error_popup").bPopup();
+                                } 
                             });
                         });
                     }    
@@ -111,7 +130,7 @@
 				</div>
 			</div>
 
-<script type="text/javascript" src="/js/uservoice.js"></script>
-<script type="text/javascript" src="/js/analitycs.js"></script>
+    <script type="text/javascript" src="/js/uservoice.js"></script>
+    <script type="text/javascript" src="/js/analitycs.js"></script>
 </body>
 </html>
