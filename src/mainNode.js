@@ -20,7 +20,15 @@
     });
 
     app.post("/feed/add/", function(req, res) { 
-          db.insert({ name: 'feed', url : req.body.url }, function(err, body, header) {
+
+          var newFeed = {
+              type : 'feed',
+              url : req.body.url,
+              isActive : false,
+              isApproved : false
+          };
+
+          db.insert(newFeed , function(err, body, header) {
             if (err) {
               console.log('error inserting feeds', err.message);
               var message = {
