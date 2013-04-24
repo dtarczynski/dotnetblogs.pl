@@ -84,19 +84,27 @@ nano.db.destroy('dotnetblogs', function() {
       console.log('restore finished');
 
 	    // create design view for feeds
-  	     db.insert(
+  	  db.insert(
 		  { "views": 
-		    { "feeds": 
-		      { 
+		    {
+          "feeds" : { 
 		      	"map": function(doc) {
               var id = doc._id;
               if(doc.type === 'feed' && doc.isActive && doc.isApproved) {
                 var url = doc.url;
                 emit(id, url);
-              }
 				    }
-		      } 
-		    }
+		      }
+		    }, "notapproved" : {
+                    "map": function(doc) {
+              var id = doc._id;
+              if(doc.type === 'feed' && !doc.isApproved) {
+                var url = doc.url;
+                emit(id, url);
+            }
+          }
+        }
+      }
 		  }, '_design/list', function (error, response) {
 		  });
     });
