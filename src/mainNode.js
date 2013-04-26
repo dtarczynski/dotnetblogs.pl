@@ -21,6 +21,17 @@
 
     app.post("/feed/add/", function(req, res) { 
 
+          /* validate input */
+
+          if(req.body.url === undefined || req.body.url === null || req.body.url.trim() === ''){
+            res.send({
+              isSuccess: false,
+              message: 'Pole adres url nie może być puste.'
+            });
+
+            return;
+          }
+
           var newFeed = {
               type : 'feed',
               url : req.body.url,
