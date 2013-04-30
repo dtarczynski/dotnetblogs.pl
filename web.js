@@ -79,8 +79,6 @@
    		console.log('static file request : ' + req.params);
    		res.sendfile( mainDirectoryPath  + req.params[0]); 
    	});
-  
- console.log("Web application started on port : " + appPortNumber );
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
