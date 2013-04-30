@@ -1,7 +1,7 @@
  var mainDirectoryPath = __dirname;
 
  // var dbServer = require('nano')('http://localhost:5984');
- var dbServer = require('nano')('https://mfranc.iriscouch.com:6984');
+ var dbServer = require('nano')('http://mfranc.iriscouch.com/');
  var db =  dbServer.use('dotnetblogs');
 
  var express = require("express");

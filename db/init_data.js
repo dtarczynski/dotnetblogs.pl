@@ -55,7 +55,7 @@
 ];
 
 /*var nano = require('nano')('http://localhost:5984');*/
-var nano = require('nano')('https://mfranc.iriscouch.com:6984');
+var nano = require('nano')('http://mfranc.iriscouch.com/');
 
 nano.db.destroy('dotnetblogs', function() {
   // create a new database
