@@ -1,4 +1,3 @@
- var appPortNumber = 12345;
  var mainDirectoryPath = __dirname;
 
  // var dbServer = require('nano')('http://localhost:5984');
@@ -83,4 +82,7 @@
   
  console.log("Web application started on port : " + appPortNumber );
 
- app.listen(appPortNumber);
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
