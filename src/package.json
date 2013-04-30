@@ -1,18 +1,14 @@
 {
   "name": "dotnetblogs",
   "version": "0.0.1",
-  "description": "Simple rss aggregate site",
   "main": "mainNode.js",
   "dependencies": {
     "express": "~3.1.0",
     "jqtpl": "~2.0.14rc1",
     "nano": "~3.3.8"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": "",
-  "author": "www.mfranc.com",
-  "license": "MIT"
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
 }
