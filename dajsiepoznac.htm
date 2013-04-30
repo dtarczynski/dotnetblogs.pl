@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Konkurs Procenta: Daj Sie Poznac</title>
+    <link type="image/x-icon" href="http://www.dotnetblogs.pl/favicon.ico" rel="shortcut icon" />
+    <meta name="description" content="Konkurs Procenta Daj Sie Poznac" />
+    <meta name="keywords" content="blogi,konkur,dajsiepoznac" />
+    <meta name="author" content="" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link href="http://pipes.yahoo.com/pipes/pipe.run?_id=ac01468b7c3433262667ff6e047cca03&_render=rss" title="Konkurs Procenta Daj Sie Poznac" rel="alternate" type="application/rss+xml" />
+    <link type="text/css" rel="Stylesheet" href="dotnetblogsdsp.css" />
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-jtemplates.js"></script>
+    <script type="text/javascript" src="js/jquery.cookies.js"></script>
+    <script type="text/javascript" src="js/jquery.qtip-1.0.0-rc3.min.js"></script>
+    <script type="text/javascript">
+        google.load('feeds', '1');
+
+        // google.load('jquery', "1.4.0");
+        var testFeeds = [
+'http://www.benedykt.net/category/konkurs-daj-sie-poznac/feed/',
+'http://wtbi.pl/blog/syndication.axd?format=rss',
+'http://feeds.feedburner.com/BlogJakubPaczkowski',
+'http://dawidmeyer.com/?feed=rss2',
+'http://kamiljakobina.blogspot.com/feeds/posts/default?alt=rss',
+'http://www.myszon.pl/feeds/posts/default?alt=rss',
+'http://feeds.feedburner.com/netcodingblog',
+'http://freak-coder.blogspot.com/feeds/posts/default?alt=rss',
+'http://evoxnagame.wordpress.com/feed/',
+'http://lashtaar.wordpress.com/feed/',
+'http://feeds.feedburner.com/michalaniserowicz',
+'http://jasiek92.blogspot.com/feeds/posts/default?alt=rss',
+'http://lukaszsowa.pl/feed/',
+'http://freonpm.blogspot.com/feeds/posts/default?alt=rss',
+'http://vebaspect.wordpress.com/feed/',
+'http://frogermcs.blogspot.com/feeds/posts/default?alt=rss',
+'http://lammichalfranc.wordpress.com/feed/',
+'http://feeds.feedburner.com/Dotxmltools',
+'http://devspark.blogspot.com/feeds/posts/default?alt=rss',
+'http://recreative-dev.blogspot.com/feeds/posts/default?alt=rss',
+'http://quavitor.wordpress.com/feed/',
+'http://matekm.jogger.pl/atom/content/html/20/',
+'http://ikn-pwsz.pl/index.php/nasze-prace/poliglot.feed?type=rss',
+'http://logtree.blogspot.com/feeds/posts/default?alt=rss',
+'http://feeds.feedburner.com/MaciejZbrzeznyProgramowanieITechnologie',
+'http://piotrsowa.wordpress.com/feed/rss/',
+'http://sotomski.blogspot.com/feeds/posts/default?alt=rss',
+'http://www.kamilhawdziejuk.pl/feed/',
+'http://blog.2357.pl/?feed=rss2',
+'http://worldpleader.com/blog.rss.ashx',
+'http://jarekfilas.blogspot.com/feeds/posts/default?alt=rss',
+'http://cieplok.blogspot.com/feeds/posts/default?alt=rss',
+'http://mforum-project.blogspot.com/feeds/posts/default',
+'http://www.mieczynski.tk/index.php/feed/',
+'http://rbklaser.blogspot.com/feeds/posts/default?alt=rss',
+'http://maciejlesiczka.blogspot.com/feeds/posts/default?alt=rss',
+'http://retsezc.webd.pl/feed/',
+'http://leszekkrol.wordpress.com/feed/',
+'http://darkprogram.blogspot.com/feeds/posts/default?alt=rss',
+'http://xairos-mmo.blogspot.com/feeds/posts/default?alt=rss',
+'http://mpiotrowski.name/?feed=rss2',
+'http://rupo76.blogspot.com/feeds/posts/default?alt=rss',
+'http://feeds.feedburner.com/fiolek-blog',
+'http://andros1245.szczecin.pl/?feed=rss2',
+'http://bagiet.blogspot.com/feeds/posts/default?alt=rss',
+'http://kasurdev.blogspot.com/feeds/posts/default?alt=rss',
+'http://poznaj-tomkos.blogspot.com/feeds/posts/default?alt=rss',
+'http://zawislak.098.pl/devblog/feed/',
+'http://pwlodek.blogspot.com/feeds/posts/default?alt=rss',
+'http://zrobcos.wordpress.com/feed/',
+'http://goraljack.wordpress.com/feed/',
+'http://michalurbanski.wordpress.com/feed/',
+'http://mkrolikowski.blogspot.com/feeds/posts/default?alt=rss',
+'http://evoengine.blogspot.com/feeds/posts/default?alt=rss',
+'http://kernmode.wordpress.com/feed/',
+'http://stecboss.blogspot.com/feeds/posts/default?alt=rss',
+'http://szypek.wordpress.com/feed/',
+'http://prostycms.blogspot.com/feeds/posts/default?alt=rss',
+'http://codefather.pl/rss',
+'http://feeds2.feedburner.com/czoper',
+'http://redagast.blogspot.com/feeds/posts/default?alt=rss',
+'http://d-loranc.pl/?feed=rss2',
+'http://feeds.feedburner.com/rafalb-blog',
+'http://kacper-kasper.blogspot.com/feeds/posts/default?alt=rss',
+'http://damianantonowicz.wordpress.com/feed/',
+'http://czarczarek.blogspot.com/feeds/posts/default?alt=rss',
+'http://actools.com.pl/blog/3/feed',
+'http://kiwi-owena.blogspot.com/feeds/posts/default?alt=rss',
+'http://wisniewskidawid.wordpress.com/feed/',
+'http://psrebniak.comeze.com/blog/SGE/?feed=rss2',
+'http://survivegame.blogspot.com/feeds/posts/default?alt=rss',
+'http://openbilard.wordpress.com/feed/',
+'http://symfiz.blogspot.com/feeds/posts/default?alt=rss',
+'http://www.widgetlike.pl/feed/',
+'http://feeds.feedburner.com/BlogBySarmax',
+'http://dyplomrowery.blogspot.com/feeds/posts/default?alt=rss',
+'http://feeds.feedburner.com/SymulacjaProjektu',
+'http://imeagle.wordpress.com/feed/',
+'http://trn.studentlive.pl/BlogMaker/Home/feedrss'
+			
+        ];
+
+        var data = {
+            feeds: new Array()
+        };
+
+        
+        var toolTipIndex = 0;
+        
+        function allDone() {
+            toolTipIndex = 0;
+
+            doSort();
+            
+            $("#headlines").setTemplateElement("allFeeds");
+            $("#headlines").processTemplate(data);
+
+            $('.feed-block').each(function() {
+
+                toolTipIndex++;
+                if (toolTipIndex % 3 == 0) {
+                    cornerToolTip = 'topRight';
+                    cornerTarget = 'bottomLeft';
+                } else {
+                    cornerToolTip = 'topLeft';
+                    cornerTarget = 'bottomRight';
+                }
+
+                $(this).find('.hentry').each(function() {
+
+                    $(this).qtip(
+                    {
+                        content: $(this).find('.full-post').html(),
+                        style: 'codaStyle',
+                        position: {
+                            corner: {
+                                tooltip: cornerToolTip,
+                                target: cornerTarget
+                            }
+                        }
+                    });
+                });
+            });
+        }
+
+
+        function replaceHelper(str) {
+
+            str = str.replace('&#243;', 'ó').replace('&oacute;', 'ó');
+            str = str.replace('&amp;', '&');
+            str = str.replace('&nbsp;', ' ').replace('&#160;', ' ');
+            str = str.replace('&#8211;', '-').replace('&ndash;', "-");
+            str = str.replace('&ldquo;', '"').replace('&rdquo;', '"');
+            str = str.replace('&#8217;', "'").replace('&rsquo;', "'");
+            str = str.replace('&lt;', '<').replace('&gt;', '>');
+            return str;
+        }
+
+        function changeSort(elem) {
+
+            if ($(elem).text() == 'sortuj po tytule') {
+                $(elem).text('sortuj po dacie');
+                $.cookie('sortFunName', 'sortByTitle', { expires: 350 });
+                $.cookie('sortFunText', 'sortuj po dacie', { expires: 350 });
+            } else {
+                $(elem).text('sortuj po tytule');
+                $.cookie('sortFunName', 'sortByDate', { expires: 350 });
+                $.cookie('sortFunText', 'sortuj po tytule', { expires: 350 });
+            }
+
+            allDone();
+        }
+
+        function initialize() {
+
+            // check if user is using opera
+            if ($.browser.opera) {
+                $('.share-facebook').css('margin-left', '110px');
+            }
+
+            // nasty workaround for tweetme button on IE
+            var theframes = document.getElementsByTagName('iframe');
+            for (var i = 0; i < theframes.length; i++) {
+                theframes[i].setAttribute("allowTransparency", "true");
+            }
+
+            try {
+                var v = $.cookie('sortFunText');
+                if (v.length != 0 && v != 'undefined') {
+                    $('#sortBy').text(v);
+                }
+                
+                // sortuj po dacie
+            } catch (err) { }
+
+            // get all feeds at once
+            for (var feedId in testFeeds) {
+                var rssFeed = new google.feeds.Feed(testFeeds[feedId]);
+                callbackTrack.queue = callbackTrack.queue || [false];
+                rssFeed.load(callbackTrack);
+            }
+        }
+
+        function doSort() {
+            try {
+                var funName = $.cookie('sortFunName');
+                if (funName.length > 0 && funName != 'undefined') {
+                    // alert(funName);
+                    eval('data.feeds.sort(' + funName + ');');
+                }
+            } catch (err) {
+                data.feeds.sort(sortByDate);
+            }
+        }
+
+        google.setOnLoadCallback(initialize);
+    </script>
+    
+    <script type="text/javascript" src="js/dotnetblogs.min.js"></script>
+</head>
+<body>
+
+<textarea cols="0" rows ="0" style="display:none;" id="allFeeds"><!--
+
+{#template MAIN}
+    {#foreach $T.feeds as feed}
+    <ul class="feed-block">
+        {#include feed root=$T.feed}
+    </ul>
+    {#cycle values=['','','<div class="row-clear"></div>']}
+    {#/for}
+{#/template MAIN}
+
+{#template feed}
+    <li class="site">
+        <a class="snap_shots" target="_blank" href="{$T.link}">
+            {$T.title}
+        </a>
+    </li> 
+    {#foreach $T.entries as entry}
+        {#include entry root=$T.entry}
+    {#/for}
+ 
+{#/template feed}
+
+{#template entry}
+<li class="hentry">
+    <h3 class="entry-title">
+        <a target="_blank" rel="bookmark" href="{$T.link}" {changeToNew($T.publishedDate)}>
+            {$T.title}
+        </a>
+    </h3>
+    <div class="full-post">
+        <div class="published">
+            {getProperDate($T.publishedDate)}
+        </div>
+        <div class="entry-content">
+            <div class="entry-bound">
+                {$T.contentSnippet}
+            </div>
+        </div>
+    </div>
+</li>
+
+{#/template entry}
+
+--></textarea>
+
+    <div id="header">
+    </div>
+    <div id="page_header">
+        
+    </div>
+    <div id="wrap">
+        <div class="cb">
+            <div class="bt">
+                <div>
+                </div>
+            </div>
+            <div class="i1">
+                <div class="i2">
+                    <div class="i3" style="text-align: right">
+                        <a class="rightSort" id="sortBy" onclick="javascript: changeSort(this); return false;">sortuj po tytule</a>
+                    </div>
+                    <div class="i3" id="headlines">
+                    </div>
+                </div>
+            </div>
+            <div class="bb">
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="page_footer">
+        <h5>
+        </h5>
+    </div>
+    
+    <div id="footer">
+        <p>
+            <span class="left">
+                © 2010 <a href="http://blog.gutek.pl/page/About.aspx">Jakub Gutkowski</a> for <a href="http://www.maciejaniserowicz.com/page/O-mnie.aspx">Maciej Aniserowicz</a> contest <a href="http://www.maciejaniserowicz.com/page/Konkurs-daj-sie-poznac.aspx">Daj Sie Poznac</a>. Hosted on <a href="https://www.orcsweb.com/" target="_blank">OrcsWeb</a>. Base design <a href="http://wordpress.bustatheme.com/coda/" target="_blank">WP-Coda</a>. Website idea taken from <a href="http://alltop.com" target="_blank">Alltop</a>.
+            </span>
+        </p>
+    </div> 
+    <div id="wrap-bttns">
+				<div id="bttn-bar">
+						
+					<div id="tweetmeme">
+					    &nbsp;
+						<script type="text/javascript">
+							tweetmeme_url = 'http://dotnetblogs.pl/dajsiepoznac.htm';
+						    tweetmeme_service = 'bit.ly';
+						    tweetmeme_source = 'maniserowicz';
+						    tweetmeme_style = 'compact';
+						</script>
+						<script src="http://tweetmeme.com/i/scripts/button.js" type="text/javascript"></script>
+					</div>
+				
+					<script>function fbs_click() {u=location.href;t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&amp;t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;}</script><a title="Podziel się" class="share-facebook" target="_facebook" onclick="return fbs_click()" href="http://www.facebook.com/share.php?u=dotnetblogs.pl/dajsiepoznac.htm">Podziel się</a>
+				</div>
+			</div>
+			<script type="text/javascript">
+  var uservoiceOptions = {
+    key: 'dotnetblogspl',
+    host: 'dotnetblogspl.uservoice.com', 
+    forum: '75743',
+    alignment: 'left',
+    background_color:'#f00', 
+    text_color: 'white',
+    hover_color: '#06c',
+    lang: 'en',
+    showTab: true
+  };
+  function _loadUserVoice() {
+    var s = document.createElement('script');
+    s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "uservoice.com/javascripts/widgets/tab.js";
+    document.getElementsByTagName('head')[0].appendChild(s);
+  }
+  _loadSuper = window.onload;
+  window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+</script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4831504-8");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
