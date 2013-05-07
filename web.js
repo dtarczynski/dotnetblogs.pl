@@ -1,8 +1,9 @@
- var mainDirectoryPath = __dirname;
 
- // var dbServer = require('nano')('http://localhost:5984');
- var dbServer = require('nano')('http://mfranc.iriscouch.com/');
- var db =  dbServer.use('dotnetblogs');
+
+ var mainDirectoryPath = __dirname;
+ var databaseAddress = 'http://localhost:5984';
+
+ var feeds = require('./custom_modules/netblogs/feed.js')(databaseAddress);
 
  var express = require("express");
     var app = express();
@@ -21,55 +22,28 @@
 
     app.post("/feed/add/", function(req, res) { 
 
-          /* validate input */
+      /* validate input */
+      if(req.body.url === undefined || req.body.url === null || req.body.url.trim() === ''){
+        res.send({
+          isSuccess: false,
+          message: 'Pole adres url nie może być puste.'
+        });
 
-          if(req.body.url === undefined || req.body.url === null || req.body.url.trim() === ''){
-            res.send({
-              isSuccess: false,
-              message: 'Pole adres url nie może być puste.'
-            });
+        return;
+      }
 
-            return;
-          }
+      /* validate if already exists */ 
 
-          var newFeed = {
-              type : 'feed',
-              url : req.body.url,
-              isActive : false,
-              isApproved : false
-          };
+      feeds.insert(req.body.url, function(message){
+          res.send(message);
+      });
 
-          db.insert(newFeed , function(err, body, header) {
-            if (err) {
-              console.log('error inserting feeds', err.message);
-              var message = {
-                isSuccess : false,
-                message : 'Oops coś poszło nie tak.'
-              };
-
-            } else {
-              var message = {
-                isSuccess : true,
-                message : 'Udało się.'
-              };
-            }
-
-            res.send(message);
-          });
     });
 
     /* return l1ist of feeds */
     app.get("/feed/all/", function(req, res) {
-
-        var feeds = {};
-
-        db.view('list','feeds', function(err, body) {
-          if (!err) {
-              feeds = body.rows;
-              res.send(feeds);
-          } else {
-              console.log('requesting actualfeeds : ' + err);
-          }
+        feeds.list(function(data){
+            res.send(data);
         });
     });
 
