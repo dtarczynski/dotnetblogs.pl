@@ -33,11 +33,18 @@
       }
 
       /* validate if already exists */ 
-
-      feeds.insert(req.body.url, function(message){
-          res.send(message);
+      feeds.getByUrl(req.body.url, function(data) {
+          if(!data){
+            feeds.insert(req.body.url, function(message) {
+              res.send(message);
+            });
+          } else {
+            res.send({
+              isSuccess: false,
+              message: 'Feed o podanym url juz&& istnieje.'
+            });
+          }
       });
-
     });
 
     /* return l1ist of feeds */

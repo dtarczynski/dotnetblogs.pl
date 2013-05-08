@@ -46,8 +46,19 @@ module.exports = function(databaseAddress) {
 	  	});
 	}
 
+	function getByUrl(url, callback) {
+		db.view('list', 'byurl', { key : url }, function(err, body){
+			if(!err){
+				return callback(body.rows[0]);
+			} else {
+				console.log('requesting feed by Url :' + err)
+			}
+		});
+	}
+
     return {
         insert: insert,
-        list: list
+        list: list,
+        getByUrl: getByUrl
     };
 };
