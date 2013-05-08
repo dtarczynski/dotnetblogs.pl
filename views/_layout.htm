@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<ihtml xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>.NET Blogs PL</title>
     <link type="image/x-icon" href="http://www.dotnetblogs.pl/favicon.ico" rel="shortcut icon" />
@@ -67,7 +67,7 @@
     </div> 
     <div id="wrap-bttns">
 				<div id="bttn-bar">
-                        <a title="Zgłoś Feed" class="add-feed" onclick="return add_feed_click()">Zgłoś Feed</a>
+                        <a title="Zgłoś Feed" class="add-feed" onclick="return add_feed_click()">Zgłoś</a>
 <!-- 					<div id="tweetmeme">
 					    &nbsp;
 						<script type="text/javascript">
@@ -88,11 +88,11 @@
 
                         var popup = $("#add_feed_popup").bPopup();
 
-                        $("#cancel_button").click(function(){
+                        $("#cancel_button").one('click', function(){
                             popup.close();
                         });
 
-                        $("#add_feed_button").click(function(){
+                        $("#add_feed_button").one('click', function(){
                             var providedUrl = $("#input_url").val();
 
                             var data = {
