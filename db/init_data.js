@@ -54,8 +54,8 @@
    "http://paskol.robi.to/?feed=rss2"
 ];
 
-var nano = require('nano')('http://localhost:5984');
-// var nano = require('nano')('http://mfranc.iriscouch.com/');
+// var nano = require('nano')('http://localhost:5984');
+var nano = require('nano')('http://mfranc.iriscouch.com/');
 
 nano.db.destroy('dotnetblogs', function() {
   // create a new database

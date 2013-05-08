@@ -1,7 +1,8 @@
 
 
  var mainDirectoryPath = __dirname;
- var databaseAddress = 'http://localhost:5984';
+ // var databaseAddress = 'http://localhost:5984';
+ var databaseAddress = 'http://mfranc.iriscouch.com/';
 
  var feeds = require('./custom_modules/netblogs/feed.js')(databaseAddress);
 
