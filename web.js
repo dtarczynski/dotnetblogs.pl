@@ -1,9 +1,8 @@
-
-
  var mainDirectoryPath = __dirname;
  var databaseAddress = 'http://localhost:5984';
 
  var feeds = require('./custom_modules/netblogs/feed.js')(databaseAddress);
+ var localization = require('./custom_modules/netblogs/localization.js')
 
  var express = require("express");
     var app = express();
@@ -26,7 +25,7 @@
       if(req.body.url === undefined || req.body.url === null || req.body.url.trim() === ''){
         res.send({
           isSuccess: false,
-          message: 'Pole adres url nie może być puste.'
+          message: localization.UrlNotEmpty
         });
 
         return;
@@ -41,7 +40,7 @@
           } else {
             res.send({
               isSuccess: false,
-              message: 'Feed o podanym url juz&& istnieje.'
+              message: localization.UrlExists
             });
           }
       });
