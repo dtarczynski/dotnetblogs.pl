@@ -307,7 +307,7 @@ width:153px;
 }
 
 #bttn-bar .add-feed {
-	float:left;
+	float:left;ˇˇ
 	height:20px;
 	padding:7px 0 3px 0px;
 	color: white;
@@ -327,7 +327,24 @@ width:153px;
 	background-color:#FFF;
 	color: #3F3E4C;
 	border-radius: 10px 10px 10px 10px;
-	box-shadow: 0 0 25px 5px #999;
+	box-shadow: 0 0 2px 5px #999;
  	padding: 25px;
 }
 
+#error_popup{
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 2px 5px #999;
+ 	padding: 25px;
+ 	background-color:red;
+ 	color: white;
+ 	display: none;
+}
+
+#success_popup{
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 2px 5px #999;
+ 	padding: 25px;
+ 	background-color: limegreen;
+ 	color: white;
+ 	display: none;
+}
