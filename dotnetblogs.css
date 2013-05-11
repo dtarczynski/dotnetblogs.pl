@@ -324,8 +324,10 @@ width:153px;
 #add_feed_popup{
 	display:none;
 	width:200px;
-	height:100px;
 	background-color:#FFF;
 	color: #3F3E4C;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 25px 5px #999;
+ 	padding: 25px;
 }
 
