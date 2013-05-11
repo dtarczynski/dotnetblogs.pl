@@ -23,6 +23,8 @@
 
       /* validate input */
       if(req.body.url === undefined || req.body.url === null || req.body.url.trim() === ''){
+        
+        console.log(localization.UrlNotEmpty);
         res.send({
           isSuccess: false,
           message: localization.UrlNotEmpty
