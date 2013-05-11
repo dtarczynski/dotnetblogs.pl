@@ -3,6 +3,7 @@ module.exports = function(databaseAddress) {
 	var databaseName = 'dotnetblogs';
 	 
 	var dbServer = require('nano')(databaseAddress);
+	var localization = require('./localization.js');
 	var db =  dbServer.use(databaseName);
 
 	function list (callback) {
@@ -32,13 +33,13 @@ module.exports = function(databaseAddress) {
 		      console.log('error inserting feeds', err.message);
 		      message = {
 		        isSuccess : false,
-		        message : 'Oops coś poszło nie tak.'
+		        message :  localization.OperationFailed
 		      };
 
 		    } else {
 		      message = {
 		        isSuccess : true,
-		        message : 'Udało się.'
+		        message : localization.OperationSuccessfull
 		      };
 		    }
 
