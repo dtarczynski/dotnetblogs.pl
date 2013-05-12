@@ -306,12 +306,7 @@ text-indent:-999em;
 width:153px;
 }
 
-#bttn-bar .add-feed {
-	float:left;ˇˇ
-	height:20px;
-	padding:7px 0 3px 0px;
-	color: white;
-}
+
 
 .rightSort 
 {
@@ -319,7 +314,7 @@ width:153px;
     font-size: 10px;    
 }
 
-/* Buttons */
+/* Popups */
 
 #add_feed_popup{
 	display:none;
@@ -347,4 +342,23 @@ width:153px;
  	background-color: limegreen;
  	color: white;
  	display: none;
+}
+
+/* Buttons */
+
+#bttn-bar .add-feed {
+	float:left;ˇˇ
+	height:20px;
+	padding:7px 0 3px 0px;
+	color: white;
+	margin-left: 10px;
+}
+
+#add_feed_span {
+	cursor: pointer;
+}
+
+.add_feed_icon {
+	float: left;
+	padding-top: 7px;
 }
