@@ -57,9 +57,14 @@ module.exports = function(databaseAddress) {
 		});
 	}
 
+	function changeFeedOption(documentId, selectedOption, callback) {
+		return callback('OKEJKA');
+	}
+
     return {
         insert: insert,
         list: list,
-        getByUrl: getByUrl
+        getByUrl: getByUrl,
+        changeFeedOption: changeFeedOption
     };
 };

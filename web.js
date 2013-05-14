@@ -48,6 +48,30 @@
       });
     });
 
+    /* change feed option */
+    app.post("/feed/changeoption/", function(req, res) {
+      /* validate input */
+        if(req.body.selectedOption === undefined || 
+          req.body.selectedOption === null || 
+          req.body.selectedOption.trim() === ''){
+          
+          console.log(localization.NoOptionSelected);
+          res.send({
+            isSuccess: false,
+            message: localization.NoOptionSelected
+          });
+
+          return;
+        }
+
+        feeds.changeFeedOption(req.body.documentId, req.body.selectedOption, function(message) {
+           res.send({
+            isSuccess: true,
+            message: localization.FeedUpdated
+          });
+        });
+    });
+
     /* return l1ist of feeds */
     app.get("/feed/all/", function(req, res) {
         feeds.list(function(data){

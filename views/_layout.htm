@@ -35,9 +35,21 @@
     <div id="add_feed_popup">
         <span>Adres Feeda:</span>
         <input id="input_url"></input>
+        </br>
         <button id="add_feed_button">Dodaj</button>
         <button id="cancel_button">Anuluj</button>
     </div>
+    <div id="moderate_feed_popup">
+        <input type="radio" name="moderate_type" value="Duplicate">Duplikat</input>
+        </br>
+        <input type="radio" name="moderate_type" value="Inactive">Nie aktywny</input>
+        </br>
+        <input type="radio" name="moderate_type" value="ChangedAddress">Zmieniony adres</input>
+        </br>
+        <button id="moderate_feed_ok_button">Ok</button>
+        <button id="moderate_feed_cancel_button">Anuluj</button>
+    </div>
+
     <div id="error_popup">
         <span id="error_message"></span>
     </div>

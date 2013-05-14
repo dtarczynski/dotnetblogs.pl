@@ -316,9 +316,17 @@ width:153px;
 
 /* Popups */
 
-#add_feed_popup{
+#add_feed_popup {
 	display:none;
-	width:200px;
+	background-color:#FFF;
+	color: #3F3E4C;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 0 2px 5px #999;
+ 	padding: 25px;
+}
+
+#moderate_feed_popup {
+	display:none;
 	background-color:#FFF;
 	color: #3F3E4C;
 	border-radius: 10px 10px 10px 10px;
@@ -344,7 +352,7 @@ width:153px;
  	display: none;
 }
 
-/* Buttons */
+/* Custom Buttons */
 
 #bttn-bar .add-feed {
 	float:left;ˇˇ
