@@ -28,7 +28,7 @@ google.load('feeds', '1');
                 }
 
                 $(this).find('.hentry').each(function() {
-
+                    
                     $(this).qtip(
                     {
                         content: $(this).find('.full-post').html(),
@@ -42,8 +42,48 @@ google.load('feeds', '1');
                     });
                 });
             });
-        }
 
+            /* moderation script */
+            $(".feed_options_button").click( function() {
+                var popup = $("#moderate_feed_popup").bPopup();
+
+                $("#moderate_feed_ok_button").one('click', function(){
+                    var selectedOption = $("[name='moderate_type']:checked").val();
+
+                    var data = {
+                        selectedOption : selectedOption
+                    };
+
+                    $.ajax({
+                        url : '/feed/changeoption/',
+                        type : 'post',
+                        dataType: 'json',
+                        contentType  : 'application/json',
+                        data:  JSON.stringify(data),
+                        success : function (data){
+                            popup.close();
+                            if(data.isSuccess){
+                                $("#success_message").text(data.message);
+                                $("#success_popup").bPopup();
+
+                            } else {
+                                $("#error_message").text(data.message);
+                                $("#error_popup").bPopup()
+                            }
+
+                        },
+                        error : function (msg){
+                            popup.close();
+                            $("#error_popup").bPopup();
+                        } 
+                    });
+                });
+
+                $("#moderate_feed_cancel_button").one('click', function(){
+                    popup.close();
+                });
+            });
+        }
 
         function replaceHelper(str) {
 

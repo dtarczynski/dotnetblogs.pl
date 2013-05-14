@@ -35,9 +35,21 @@
     <div id="add_feed_popup">
         <span>Adres Feeda:</span>
         <input id="input_url"></input>
+        </br>
         <button id="add_feed_button">Dodaj</button>
         <button id="cancel_button">Anuluj</button>
     </div>
+    <div id="moderate_feed_popup">
+        <input type="radio" name="moderate_type" value="Duplicate">Duplikat</input>
+        </br>
+        <input type="radio" name="moderate_type" value="Inactive">Nie aktywny</input>
+        </br>
+        <input type="radio" name="moderate_type" value="ChangedAddress">Zmieniony adres</input>
+        </br>
+        <button id="moderate_feed_ok_button">Ok</button>
+        <button id="moderate_feed_cancel_button">Anuluj</button>
+    </div>
+
     <div id="error_popup">
         <span id="error_message"></span>
     </div>
@@ -67,7 +79,10 @@
     </div> 
     <div id="wrap-bttns">
 				<div id="bttn-bar">
-                        <a title="Zgłoś Feed" class="add-feed" onclick="return add_feed_click()">Zgłoś</a>
+                        <span id="add_feed_span">
+                            <img class="add_feed_icon" src="/images/icons/feed_add.png"></img>
+                            <a title="Zgłoś Feed" class="add-feed">Zgłoś</a>
+                        </span>
 <!-- 					<div id="tweetmeme">
 					    &nbsp;
 						<script type="text/javascript">
@@ -84,48 +99,6 @@
                             t=document.title;window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&amp;t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');
                             return false;
                         }
-                    function add_feed_click() {
-
-                        var popup = $("#add_feed_popup").bPopup();
-
-                        $("#cancel_button").one('click', function(){
-                            popup.close();
-                        });
-
-                        $("#input_url").val('');
-
-                        $("#add_feed_button").one('click', function(){
-                            var providedUrl = $("#input_url").val();
-
-                            var data = {
-                                url : providedUrl
-                            };
-
-                            $.ajax({
-                                url : '/feed/add/',
-                                type : 'post',
-                                dataType: 'json',
-                                contentType  : 'application/json',
-                                data:  JSON.stringify(data),
-                                success : function (data){
-                                    popup.close();
-                                    if(data.isSuccess){
-                                        $("#success_message").text(data.message);
-                                        $("#success_popup").bPopup();
-
-                                    } else {
-                                        $("#error_message").text(data.message);
-                                        $("#error_popup").bPopup()
-                                    }
-
-                                },
-                                error : function (){
-                                    popup.close();
-                                    var error_popup = $("#error_popup").bPopup();
-                                } 
-                            });
-                        });
-                    }    
 
                     </script>
                     <a title="Podziel się" class="share-facebook" target="_facebook" onclick="return fbs_click()" href="http://www.facebook.com/share.php?u=dotnetblogs.pl">Podziel się</a>
@@ -134,5 +107,52 @@
 
     <script type="text/javascript" src="/js/uservoice.js"></script>
     <script type="text/javascript" src="/js/analitycs.js"></script>
+    <script type="text/javascript" >
+
+        $(function(){
+            $("#add_feed_span").click(function(){
+                var popup = $("#add_feed_popup").bPopup();
+
+                $("#cancel_button").one('click', function(){
+                    popup.close();
+                });
+
+                $("#input_url").val('');
+
+                $("#add_feed_button").one('click', function(){
+                    var providedUrl = $("#input_url").val();
+
+                    var data = {
+                        url : providedUrl
+                    };
+
+                    $.ajax({
+                        url : '/feed/add/',
+                        type : 'post',
+                        dataType: 'json',
+                        contentType  : 'application/json',
+                        data:  JSON.stringify(data),
+                        success : function (data){
+                            popup.close();
+                            if(data.isSuccess){
+                                $("#success_message").text(data.message);
+                                $("#success_popup").bPopup();
+
+                            } else {
+                                $("#error_message").text(data.message);
+                                $("#error_popup").bPopup()
+                            }
+
+                        },
+                        error : function (){
+                            popup.close();
+                            var error_popup = $("#error_popup").bPopup();
+                        } 
+                    });
+                });
+            });
+        });
+
+    </script>
 </body>
 </html>
