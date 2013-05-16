@@ -71,7 +71,8 @@ nano.db.destroy('dotnetblogs', function() {
             type : 'feed',
             url : item,
             isActive : true,
-            isApproved : true
+            isApproved : true,
+            optionSelected: null
           };
 
           db.insert(newDoc, function(err, body, header) {
@@ -110,9 +111,14 @@ nano.db.destroy('dotnetblogs', function() {
                   emit(doc.url, doc);
               }
           }
-        }
+         } , "hasoption" : {
+            "map" :   function(doc) {
+                if(doc.type === 'feed' && doc.optionSelected !== null ){
+                  emit(id, doc);
+              }
+          }
        }
-		  }, '_design/list', function (error, response) {
+		  }}, '_design/list', function (error, response) {
 		  });
     });
 });
