@@ -112,10 +112,11 @@ nano.db.destroy('dotnetblogs', function() {
               }
           }
          } , "hasoption" : {
-            "map" :   function(doc) {
-                if(doc.type === 'feed' && doc.optionSelected !== null ){
-                  emit(id, doc);
-              }
+            "map" : function (doc) {
+              var id = doc._id;
+              if(doc.type === 'feed' && doc.optionSelected.length > 0) {
+                emit(id, doc);
+            }
           }
        }
 		  }}, '_design/list', function (error, response) {
