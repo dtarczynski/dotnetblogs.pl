@@ -64,11 +64,9 @@
           return;
         }
         
-        feeds.changeFeedOption(req.body.documentId, req.body.selectedOption, function(message) {
-           res.send({
-            isSuccess: true,
-            message: localization.FeedUpdated
-          });
+        feeds.changeFeedOption(req.body.documentId, req.body.selectedOption,
+         function(message) {
+           res.send(message);
         });
     });
 

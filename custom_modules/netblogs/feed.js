@@ -74,8 +74,34 @@ module.exports = function(databaseAddress) {
 
 	function changeFeedOption(documentId, selectedOption, callback) {
 		db.get(documentId, function (error, existingDoc){
-			existingDoc.optionSelected.push(selectedOption);
-			db.insert(existingDoc, documentId, callback);
+
+			if(!existingDoc)
+			{
+				callback({
+					isSuccess: false,
+					message: localization.OperationFailed
+				});
+			}else{
+				existingDoc.optionSelected.push(selectedOption);
+				db.insert(existingDoc, documentId,function(err, body, header){
+					var message = {};
+					    if (err) {
+					      console.log('error inserting feeds', err.message);
+					      message = {
+					        isSuccess : false,
+					        message :  localization.OperationFailed
+					      };
+
+					    } else {
+					      message = {
+					        isSuccess : true,
+					        message : localization.OperationSuccessfull
+					      };
+					    }
+
+					 callback(message);   
+				});
+			}
 		});
 	}
 
