@@ -72,7 +72,7 @@ nano.db.destroy('dotnetblogs', function() {
             url : item,
             isActive : true,
             isApproved : true,
-            optionSelected: null
+            optionSelected: []
           };
 
           db.insert(newDoc, function(err, body, header) {

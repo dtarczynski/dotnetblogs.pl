@@ -22,7 +22,8 @@ module.exports = function(databaseAddress) {
 		    type : 'feed',
 		    url : url,
 		    isActiveurl : false,
-		    isApproved : false
+		    isApproved : false,
+		    optionSelected : []
 		};
 
 		insertFeed(newFeed, callback);
@@ -73,7 +74,7 @@ module.exports = function(databaseAddress) {
 
 	function changeFeedOption(documentId, selectedOption, callback) {
 		db.get(documentId, function (error, existingDoc){
-			existingDoc.optionSelected = selectedOption;
+			existingDoc.optionSelected.push(selectedOption);
 			db.insert(existingDoc, documentId, callback);
 		});
 	}
