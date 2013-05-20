@@ -25,7 +25,11 @@ module.exports = function(databaseAddress) {
 		    isApproved : false
 		};
 
-	  	db.insert(newFeed , function(err, body, header) {
+		insertFeed(newFeed, callback);
+	}
+
+	function insertFeed(newFeed, callback) {
+		db.insert(newFeed , function(err, body, header) {
 
 	  		var message = {};
 
@@ -57,9 +61,23 @@ module.exports = function(databaseAddress) {
 		});
 	}
 
-	function changeFeedOption(documentId, selectedOption, callback) {
-		return callback('OKEJKA');
+	function getById(documentId, callback) {
+		db.view('list', 'feeds', { key : documentId }, function(err, body){
+			if(!err){
+				return callback(body.rows[0]);
+			} else {
+				console.log('requesting feed by Id :' + err)
+			}
+		});
 	}
+
+	function changeFeedOption(documentId, selectedOption, callback) {
+		db.get(documentId, function (error, existingDoc){
+			existingDoc.optionSelected = selectedOption;
+			db.insert(existingDoc, documentId, callback);
+		});
+	}
+
 
     return {
         insert: insert,

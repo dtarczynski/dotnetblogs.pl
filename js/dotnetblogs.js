@@ -287,34 +287,6 @@ Date.now = function() { return new Date(); }; Date.today = function() { return D
             return 0;
         }
 
-        function callbackTrack(result, d) {
-
-            if (d == 'done') {
-                if (callbackTrack.queue.length % 10 == 0) {
-                    partialDone(data);
-                }
-
-                if (callbackTrack.queue.length == testFeeds.length + 1)
-                    allDone();
-
-                return;
-            }
-
-            if (!result.error) {
-                result.feed.engTitle = convert_plToEng(result.feed.title).toUpperCase().replace('£', 'L').replace('¥', 'A');
-                for (var feedIndex = 0; feedIndex < result.feed.entries.length; feedIndex++) {
-                    result.feed.entries[feedIndex].content = '';
-                    result.feed.entries[feedIndex].title = replaceHelper(result.feed.entries[feedIndex].title);
-                    result.feed.entries[feedIndex].contentSnippet = replaceHelper(result.feed.entries[feedIndex].contentSnippet);
-                }
-                data.feeds.push(result.feed);
-            }
-
-            callbackTrack.queue.push(true);
-
-            return callbackTrack(null, 'done');
-        }
-
         function convert_plToEng(val) {
 
             var str = new StringBuilder(val);

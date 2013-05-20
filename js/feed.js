@@ -1,6 +1,12 @@
+/* this only loads apis */
 google.load('feeds', '1');
 
-        var testFeeds = [];
+        /* changed test feeds to assocative array 
+            note that assocative array doesnt have length attribute
+            we will store our special object length in it
+        */
+        var testFeeds = {};
+        testFeeds["length"] = 0;
 
         var data = {
             feeds: new Array()
@@ -10,9 +16,9 @@ google.load('feeds', '1');
         
         function allDone() {
             toolTipIndex = 0;
-
-            doSort();
             
+            doSort();
+
             $("#headlines").setTemplateElement("allFeeds");
             $("#headlines").processTemplate(data);
 
@@ -47,11 +53,14 @@ google.load('feeds', '1');
             $(".feed_options_button").click( function() {
                 var popup = $("#moderate_feed_popup").bPopup();
 
+                var optionsButtons = $(this);
+
                 $("#moderate_feed_ok_button").one('click', function(){
                     var selectedOption = $("[name='moderate_type']:checked").val();
 
                     var data = {
-                        selectedOption : selectedOption
+                        selectedOption : selectedOption,
+                        documentId: optionsButtons.attr('feed_id')
                     };
 
                     $.ajax({
@@ -136,12 +145,50 @@ google.load('feeds', '1');
 
            // get all feeds at once
            for (var feedId in testFeeds) {
-               var rssFeed = new google.feeds.Feed(testFeeds[feedId]);
+               var rssFeed = new google.feeds.Feed(testFeeds[feedId].feed_url);
                callbackTrack.queue = callbackTrack.queue || [false];
                rssFeed.load(callbackTrack);
            }
 
             allDone();
+        }
+
+         function callbackTrack(result, d) {
+            if (d == 'done') {
+                if (callbackTrack.queue.length % 10 == 0) {
+                    partialDone(data);
+                }
+
+                if (callbackTrack.queue.length == testFeeds.length + 1)
+                {
+                    allDone();
+                }
+
+                return;
+            }
+
+            if (!result.error) {
+
+                if(result.feed)
+                {
+                    var idForFeed = testFeeds[result.feed.feedUrl].feed_id;
+                    $(result.feed).extend(result.feed,{
+                        feed_id : idForFeed
+                    });
+                }
+
+                result.feed.engTitle = convert_plToEng(result.feed.title).toUpperCase().replace('£', 'L').replace('¥', 'A');
+                for (var feedIndex = 0; feedIndex < result.feed.entries.length; feedIndex++) {
+                    result.feed.entries[feedIndex].content = '';
+                    result.feed.entries[feedIndex].title = replaceHelper(result.feed.entries[feedIndex].title);
+                    result.feed.entries[feedIndex].contentSnippet = replaceHelper(result.feed.entries[feedIndex].contentSnippet);
+                }
+                data.feeds.push(result.feed);
+            }
+
+            callbackTrack.queue.push(true);
+
+            return callbackTrack(null, 'done');
         }
 
         function doSort() {
@@ -163,7 +210,12 @@ google.load('feeds', '1');
                 success : function (data){
 
                     data.forEach( function(item) {
-                        testFeeds.push(item.value);
+                        testFeeds[item.value] =
+                        {
+                            feed_id: item.id,
+                            feed_url: item.value
+                        };
+                        testFeeds["length"] = testFeeds["length"] + 1;
                     });
                     
                     initialize();
