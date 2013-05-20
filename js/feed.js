@@ -53,6 +53,8 @@ google.load('feeds', '1');
             $(".feed_options_button").click( function() {
                 var popup = $("#moderate_feed_popup").bPopup();
 
+                $("[name='moderate_type']:checked").attr('checked', false);
+                
                 var optionsButtons = $(this);
 
                 $("#moderate_feed_ok_button").one('click', function(){
