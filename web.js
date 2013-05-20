@@ -56,7 +56,7 @@
           req.body.selectedOption === null || 
           req.body.selectedOption.trim() === ''){
           
-          console.log(localization.NoOptionSelected);
+          
           res.send({
             isSuccess: false,
             message: localization.NoOptionSelected
@@ -64,7 +64,7 @@
 
           return;
         }
-
+        
         feeds.changeFeedOption(req.body.documentId, req.body.selectedOption, function(message) {
            res.send({
             isSuccess: true,
