@@ -19,6 +19,11 @@
         res.render('feeds');
     });
 
+    /* serves admin page */
+    app.get("/admin", function(req, res) {
+        res.render('manage');
+    });
+
     app.post("/feed/add/", function(req, res) { 
 
       /* validate input */
@@ -84,7 +89,7 @@
    		res.sendfile( mainDirectoryPath  + req.params[0]); 
    	});
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 5001;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
