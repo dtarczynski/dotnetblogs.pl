@@ -1,5 +1,26 @@
+{{layout ''}}
 Simple Admin
 
-{{each feeds}}
-    <div>${$index} ${$value.value.url}</div>
+{{each(feed, i) feeds}}
+    <div>${$index} 
+    	
+		{{if feed.value.isActiveurl == false || feed.value.isApproved == false }}
+    		<span style="color:brown;">${feed.value.url}</span>
+    	{{else feed.value.optionSelected.length > 0 }}
+			<span style="color:red;">${feed.value.url}</span>
+		{{else}}
+			${feed.value.url}
+    	{{/if}}
+
+    	{{each(option, i) feed.value.optionSelected}}
+    		<span style="color:red;">${option}</span>
+    	{{/each}}
+
+    	{{if feed.value.isActiveurl == false }}
+    		<span style="color:brown;">A</span>
+    	{{/if}}
+    	{{if feed.value.isApproved == false }}
+    		<span style="color:brown;">Z</span>
+    	{{/if}}
+    </div>
 {{/each}}
