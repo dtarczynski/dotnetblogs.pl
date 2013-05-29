@@ -21,7 +21,9 @@
 
     /* serves admin page */
     app.get("/admin", function(req, res) {
-        res.render('manage');
+      feeds.adminlist(function(data){
+         res.render('admin', { feeds : data });
+      });
     });
 
     app.post("/feed/add/", function(req, res) { 
