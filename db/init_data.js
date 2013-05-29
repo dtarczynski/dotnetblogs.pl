@@ -118,6 +118,13 @@ nano.db.destroy('dotnetblogs', function() {
                 emit(id, doc);
             }
           }
+       } , "adminlist" : {
+            "map" : function (doc) {
+              var id = doc._id;
+              if(doc.type === 'feed') {
+                emit(id, doc);
+            }
+          }
        }
 		  }}, '_design/list', function (error, response) {
 		  });
