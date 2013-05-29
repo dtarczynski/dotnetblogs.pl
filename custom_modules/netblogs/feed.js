@@ -16,6 +16,16 @@ module.exports = function(databaseAddress) {
 	    });  
 	 }
 
+	 function adminlist (callback) {
+	    db.view('list','adminlist', function(err, body) {
+	        if (!err) {
+	            return callback(body.rows);
+	        } else {
+	            console.log('requesting actualfeeds : ' + err);
+	        }
+	    });  
+	 }
+
 	 function insert (url, callback) {
 
 		var newFeed = {
@@ -110,6 +120,7 @@ module.exports = function(databaseAddress) {
         insert: insert,
         list: list,
         getByUrl: getByUrl,
-        changeFeedOption: changeFeedOption
+        changeFeedOption: changeFeedOption,
+        adminlist: adminlist
     };
 };
