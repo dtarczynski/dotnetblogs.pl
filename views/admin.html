@@ -1,26 +1,30 @@
-{{layout ''}}
-Simple Admin
+{{layout '_adminlayout.htm'}}
 
-{{each(feed, i) feeds}}
-    <div>${$index} 
-    	
-		{{if feed.value.isActiveurl == false || feed.value.isApproved == false }}
-    		<span style="color:brown;">${feed.value.url}</span>
-    	{{else feed.value.optionSelected.length > 0 }}
-			<span style="color:red;">${feed.value.url}</span>
-		{{else}}
-			${feed.value.url}
-    	{{/if}}
+<table id="feeds_datatable">
+    <thead>
+        <tr>
+            <th>Nr.</th>
+            <th>Feed Url</th>
+            <th>Active</th>
+            <th>Approved</th>
+            <th>Flags</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{each(feed, i) feeds}}
+        <tr>
+            <td>${i+1} </td>
+            <td>${feed.value.url}</td>
+            <td>${feed.value.isActive}</td>
+            <td>${feed.value.isApproved}</td>
+            <td>${feed.value.optionSelected}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
 
-    	{{each(option, i) feed.value.optionSelected}}
-    		<span style="color:red;">${option}</span>
-    	{{/each}}
-
-    	{{if feed.value.isActiveurl == false }}
-    		<span style="color:brown;">A</span>
-    	{{/if}}
-    	{{if feed.value.isApproved == false }}
-    		<span style="color:brown;">Z</span>
-    	{{/if}}
-    </div>
-{{/each}}
+<script type="text/javascript">
+$(function(){
+    $("#feeds_datatable").dataTable();
+});
+</script>
