@@ -72,7 +72,7 @@ nano.db.destroy('dotnetblogs', function() {
             url : item,
             isActive : true,
             isApproved : true,
-            optionSelected: null
+            optionSelected: []
           };
 
           db.insert(newDoc, function(err, body, header) {
@@ -112,10 +112,18 @@ nano.db.destroy('dotnetblogs', function() {
               }
           }
          } , "hasoption" : {
-            "map" :   function(doc) {
-                if(doc.type === 'feed' && doc.optionSelected !== null ){
-                  emit(id, doc);
-              }
+            "map" : function (doc) {
+              var id = doc._id;
+              if(doc.type === 'feed' && doc.optionSelected.length > 0) {
+                emit(id, doc);
+            }
+          }
+       } , "adminlist" : {
+            "map" : function (doc) {
+              var id = doc._id;
+              if(doc.type === 'feed') {
+                emit(id, doc);
+            }
           }
        }
 		  }}, '_design/list', function (error, response) {

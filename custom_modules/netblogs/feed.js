@@ -16,13 +16,24 @@ module.exports = function(databaseAddress) {
 	    });  
 	 }
 
+	 function adminlist (callback) {
+	    db.view('list','adminlist', function(err, body) {
+	        if (!err) {
+	            return callback(body.rows);
+	        } else {
+	            console.log('requesting actualfeeds : ' + err);
+	        }
+	    });  
+	 }
+
 	 function insert (url, callback) {
 
 		var newFeed = {
 		    type : 'feed',
 		    url : url,
 		    isActiveurl : false,
-		    isApproved : false
+		    isApproved : false,
+		    optionSelected : []
 		};
 
 		insertFeed(newFeed, callback);
@@ -73,8 +84,34 @@ module.exports = function(databaseAddress) {
 
 	function changeFeedOption(documentId, selectedOption, callback) {
 		db.get(documentId, function (error, existingDoc){
-			existingDoc.optionSelected = selectedOption;
-			db.insert(existingDoc, documentId, callback);
+
+			if(!existingDoc)
+			{
+				callback({
+					isSuccess: false,
+					message: localization.OperationFailed
+				});
+			}else{
+				existingDoc.optionSelected.push(selectedOption);
+				db.insert(existingDoc, documentId,function(err, body, header){
+					var message = {};
+					    if (err) {
+					      console.log('error inserting feeds', err.message);
+					      message = {
+					        isSuccess : false,
+					        message :  localization.OperationFailed
+					      };
+
+					    } else {
+					      message = {
+					        isSuccess : true,
+					        message : localization.OperationSuccessfull
+					      };
+					    }
+
+					 callback(message);   
+				});
+			}
 		});
 	}
 
@@ -83,6 +120,7 @@ module.exports = function(databaseAddress) {
         insert: insert,
         list: list,
         getByUrl: getByUrl,
-        changeFeedOption: changeFeedOption
+        changeFeedOption: changeFeedOption,
+        adminlist: adminlist
     };
 };

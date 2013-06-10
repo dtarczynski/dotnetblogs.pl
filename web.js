@@ -20,6 +20,13 @@
         res.render('feeds');
     });
 
+    /* serves admin page */
+    app.get("/admin", function(req, res) {
+      feeds.adminlist(function(data){
+         res.render('admin', { feeds : data });
+      });
+    });
+
     app.post("/feed/add/", function(req, res) { 
 
       /* validate input */
@@ -65,11 +72,9 @@
           return;
         }
         
-        feeds.changeFeedOption(req.body.documentId, req.body.selectedOption, function(message) {
-           res.send({
-            isSuccess: true,
-            message: localization.FeedUpdated
-          });
+        feeds.changeFeedOption(req.body.documentId, req.body.selectedOption,
+         function(message) {
+           res.send(message);
         });
     });
 
@@ -87,7 +92,7 @@
    		res.sendfile( mainDirectoryPath  + req.params[0]); 
    	});
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 5001;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });

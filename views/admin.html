@@ -1,0 +1,30 @@
+{{layout '_adminlayout.htm'}}
+
+<table id="feeds_datatable">
+    <thead>
+        <tr>
+            <th>Nr.</th>
+            <th>Feed Url</th>
+            <th>Active</th>
+            <th>Approved</th>
+            <th>Flags</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{each(feed, i) feeds}}
+        <tr>
+            <td>${i+1} </td>
+            <td>${feed.value.url}</td>
+            <td>${feed.value.isActive}</td>
+            <td>${feed.value.isApproved}</td>
+            <td>${feed.value.optionSelected}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+$(function(){
+    $("#feeds_datatable").dataTable();
+});
+</script>
