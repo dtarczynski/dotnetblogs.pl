@@ -13,10 +13,22 @@
     <tbody>
         {{each(feed, i) feeds}}
         <tr>
-            <td>${i+1} </td>
+            <td>${i+1}</td>
             <td>${feed.value.url}</td>
-            <td>${feed.value.isActive}</td>
-            <td>${feed.value.isApproved}</td>
+            <td>
+		    {{if feed.value.isActive}}
+		    	<img src="/css/images/ok.gif"></img>	
+		    {{else}}
+		    	<img src="/css/images/not_ok.gif"></img>	
+		    {{/if}}
+            </td>
+            <td>
+		    {{if feed.value.isApproved}}
+		    	<img src="/css/images/ok.gif"></img>	
+		    {{else}}
+		    	<img src="/css/images/not_ok.gif"></img>	
+		    {{/if}}
+            </td>
             <td>${feed.value.optionSelected}</td>
         </tr>
         {{/each}}
